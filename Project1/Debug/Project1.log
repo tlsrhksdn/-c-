@@ -1,0 +1,13 @@
+﻿  20203350_ex16.c
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(64): warning C4047: '함수': 'StackType *'의 간접 참조 수준이 'StackType **'과(와) 다릅니다.
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(64): warning C4024: 'init_stack': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(68): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(69): warning C4047: '함수': 'StackType *'의 간접 참조 수준이 'StackType **'과(와) 다릅니다.
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(69): warning C4024: 'push': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(70): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(72): warning C4047: '함수': 'StackType *'의 간접 참조 수준이 'StackType **'과(와) 다릅니다.
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(72): warning C4024: 'pop': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(80): warning C4013: 'check_palindrome'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+c:\users\user\onedrive\바탕 화면\국민대\학과공부\자료구조\project1\project1\20203350_ex16.c(97): warning C4013: 'tolower'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  문자열 압축 프로그램(p.143 12번).c
+  Project1.vcxproj -> C:\Users\User\OneDrive\바탕 화면\국민대\학과공부\자료구조\Project1\Debug\Project1.exe
