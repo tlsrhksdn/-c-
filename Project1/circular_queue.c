@@ -2,87 +2,72 @@
 #include<stdlib.h>
 #define MAX_QUEUE_SIZE 10
 
+//í êµ¬ì¡°ì²´ ìž…ë ¥
 typedef int element;
 
-//¿øÇü Å¥ Á¤ÀÇ
-typedef struct {
-	int front, rear;
+typedef struct{
 	element data[MAX_QUEUE_SIZE];
+	int front,rear;
 }QueueType;
-
-//¿¡·¯ Ãâ·Â
+//ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥
 void error(char *message)
 {
-	fprintf(stderr, "%s\n", message);
+	fprintf(stderr,"%s\n",message);
 	exit(1);
 }
-
-//¿øÇü Å¥ ÃÊ±âÈ­
+//í ì´ˆê¸°í™” í•¨ìˆ˜
 void init_queue(QueueType *q)
 {
-	q->front = q->rear=0;
-	return;
+	q->front=0;
+	q->rear=0;
 }
-
-//¿øÇü Å¥ ºö
+//í ê³µë°±ìƒíƒœ í•¨ìˆ˜
 int is_empty(QueueType *q)
 {
-	if (q->front == q->rear)
-		return 1;
-	else
-		return 0;
+	return (q->front==q->rear);
 }
-//¿øÇü Å¥ °¡µæÂü
+//í í¬í™”ìƒíƒœ í•¨ìˆ˜
 int is_full(QueueType *q)
 {
-	if ((q->rear + 1) % MAX_QUEUE_SIZE == q->front)
-		return 1;
-	else
-		return 0;
+	return (q->rear+1)%MAX_QUEUE_SIZE==q->front;
 }
-//¿øÇü Å¥ Ãâ·Â
-void queue_print(QueueType *q)
+//í ì „ì²´ ì¶œë ¥
+void print_queue(QueueType *q)
 {
-	printf("QUEUE(front=&d,rear=%d) = ", q->front, q->rear);
-	if (!is_empty)
+	printf("Queue(front=%d rear=%d)",q->front,q->rear);
+	if(!is_empty(q))
 	{
-		int i = q->front; //q->front¸¦ ´ã´Â º¯¼ö i »ý¼º
-		do {
-			i = (i + 1) % MAX_QUEUE_SIZE;
-			printf("%d | ", q->data[i]);
-			if (i == q->rear)
-				break;
-		} while (i != q->front);
+		int i=q->front;
+		do{
+			i=(i+1)%MAX_QUEUE_SIZE;
+			printf("%d | ",q->data[i]);
+			if(i==q->rear)
+			break;
+		}while(i!=q->front);
+	
 	}
 	printf("\n");
 }
-//¿øÇü Å¥ ¿ø¼Ò ÀÔ·Â
+//íì— ì›ì†Œ ìž…ë ¥ í•¨ìˆ˜
 void enqueue(QueueType *q,element item)
 {
-	if (is_full(q))
-	{
-		error("Å¥°¡ Æ÷È­»óÅÂÀÔ´Ï´Ù.");
-		return;
-	}
-	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
-	q->data[q->rear] = item;
+	if(is_full(q))
+		error("ìŠ¤íƒ í¬í™”ìƒíƒœìž…ë‹ˆë‹¤.");
+	q->rear=(q->rear+1)%MAX_QUEUE_SIZE;
+	q->data[q->rear]=item;
 }
-
-//¿øÇü Å¥ ¿ø¼Ò Ãâ·Â
+//íì— ì›ì†Œ ì‚­ì œ í›„ ì¶œë ¥ í•¨ìˆ˜
 element dequeue(QueueType *q)
 {
-	if (is_empty(q))
-	{
-		error("Å¥°¡ °ø¹é»óÅÂÀÔ´Ï´Ù.");
-	}
-	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+	if(is_empty(q))
+	error("ìŠ¤íƒ ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.");
+	q->front=(q->front+1)%MAX_QUEUE_SIZE;
 	return q->data[q->front];
 }
+//íì— ì›ì†Œ ì‚­ì œí•˜ì§€ ì•Šê³  ì¶œë ¥ í•¨ìˆ˜
 element peek(QueueType *q)
 {
-	if (is_empty(q))
-	{
-		error("Å¥°¡ °ø¹é»óÅÂÀÔ´Ï´Ù.");
-	}
-	return (q->front + 1) % MAX_QUEUE_SIZE;	
+	if(is_empty(q))
+	error("ìŠ¤íƒ ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.");
+	return q->data[q->front];
 }

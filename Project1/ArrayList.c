@@ -1,82 +1,94 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define MAX_LIST_SIZE 100
+//ë¦¬ìŠ¤íŠ¸ êµ¬ì¡°ì²´ ìƒì„±
 typedef int element;
 
-typedef struct {
+typedef struct{
 	element array[MAX_LIST_SIZE];
 	int size;
-}ArrayListType;
-
+}ArrayLIst;
+//ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥í•¨ìˆ˜
 void error(char *message)
 {
-	fprintf(stderr, "%s\n", message);
+	fprintf(stderr,"%s\n",message);
 	exit(1);
 }
-//¸®½ºÆ® ÃÊ±âÈ­
-void init_list(ArrayListType *L)
+//ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™” í•¨ìˆ˜
+void init_list(ArrayLIst *L)
 {
-	L->size == 0;
+	L->size=0;
 }
-
-//¸®½ºÆ® °ø¹é¼³Á¤
-int is_empty(ArrayListType *L)
+//ë¦¬ìŠ¤íŠ¸ ê³µë°±ìƒíƒœ í•¨ìˆ˜
+int is_empty(ArrayLIst *L)
 {
-	return L->size == 0;
+	return L->size==0;
 }
-//¸®½ºÆ® Æ÷È­¼³Á¤
-int is_full(ArrayListType *L)
+//ë¦¬ìŠ¤íŠ¸ í¬í™”ìƒíƒœ í•¨ìˆ˜
+int is_full(ArrayLIst *L)
 {
-	return L -> size >= MAX_LIST_SIZE;
+	return L->size==MAX_LIST_SIZE;
 }
-//Æ¯Á¤ À§Ä¡ÀÇ ¸®½ºÆ® ¿ø¼Ò ¹İÈ¯
-element peek(ArrayListType *L,int pos)
+//ë¦¬ìŠ¤íŠ¸ ì›ì†Œ ì‚­ì œí•˜ì§€ ì•Šê³  ë°˜í™˜í•¨ìˆ˜
+element get_entry(ArrayLIst *L,int pos)
 {
-	if (pos<0 || pos>L->size)
-		error("À§Ä¡ ¿À·ù");
+	if(pos<0 || pos>L->size)
+	error("ìœ„ì¹˜ ì˜¤ë¥˜");
 	return L->array[pos];
 }
-//¸®½ºÆ® Ãâ·Â
-void print_list(ArrayListType *L)
+//ë¦¬ìŠ¤íŠ¸ ì „ì²´ì›ì†Œ ì¶œë ¥í•¨ìˆ˜
+void print_list(ArrayLIst *L)
 {
-	for (int i = 0; i < L ->size; i++)
+	for(int i=0;i<L->size;i++)
 	{
-		printf("%d->", L->array[i]);
+		printf("%d->",L->array[i]);
 	}
-	printf("\n");
 }
-//¸¶Áö¸· À§Ä¡¿¡ ¿ø¼Ò »ğÀÔ
-void insert_last(ArrayListType *L, element item)
+//ë¦¬ìŠ¤íŠ¸ ë§ˆì§€ë§‰ìœ„ì¹˜ì— ì›ì†Œ ì‚½ì…í•¨ìˆ˜
+void insert_last(ArrayLIst *L,element item)
 {
-	if (is_full(L))
-		error("¸®½ºÆ® ¿À¹öÇÃ·Î¿ì");
-	L->array[(L->size)++] = item;
+	if(is_full(L))
+	error("ë¦¬ìŠ¤íŠ¸ ì˜¤ë²„í”Œë¡œìš°");
+	L->array[(L->size)++]=item;
 }
-//ÀÓÀÇÀÇ À§Ä¡¿¡ ¿ø¼Ò »ğÀÔ
-void insert(ArrayListType *L, int pos, element item)
+//ë¦¬ìŠ¤íŠ¸ íŠ¹ì •ìœ„ì¹˜ì— ì›ì†Œ ì‚½ì…í•¨ìˆ˜
+void insert(ArrayLIst *L,int pos,element item)
 {
-	if((pos>=0)&&(pos<=L->size)&&(!is_full(L)))
-		for (int i= (L->size-1);i>=pos;i--)
-		{
-			L->array[i+1]=L->array[i];
-		}
+	if(is_full(L))
+	error("ë¦¬ìŠ¤íŠ¸ ì˜¤ë²„í”Œë¡œìš°");
+	for(int i=(L->size-1);i>=pos;i--)
+	{
+		L->array[i+1]=L->array[i];
+	}
 	L->array[pos]=item;
 	L->size++;
+}
+//ë¦¬ìŠ¤íŠ¸ íŠ¹ì •ìœ„ì¹˜ ì›ì†Œ ì‚­ì œí•¨ìˆ˜
+element delete(ArrayLIst*L,int pos)
+{
+	element item=L->array[pos];
+	if(pos<0 || pos>L->size)
+	error("ê³µë°± ì˜¤ë¥˜");
+	for(int i=pos;i<=(L->size-1)>;i++)
+	{
+		L->array[i]=L->array[i+1];
+	}
+	L->size--;
+	return item;
 
 }
-//Æ¯Á¤ À§Ä¡ÀÇ ¿ø¼Ò Á¦°Å
-element delete(ArrayListType *L, int pos)
+//ë¦¬ìŠ¤íŠ¸ ëª¨ë“ ìš”ì†Œ ì‚­ì œí•¨ìˆ˜
+void clear_list(ArrayLIst *L)
 {
-	element temp=L->array[pos];
-	if ((pos >= 0) && (pos <= L->size) && (!is_full(L)))
+	for(int i=0;i<=L->size;i++)
 	{
-		for (int i = pos; i < (L->size-1); i++)
-		{
-			L->array[i] = L->array[i + 1];
-		}
-		L->size--;
+		L->array[i]=NULL;
 	}
-	return item;
+}
+//ë¦¬ìŠ¤íŠ¸ íŠ¹ì •ìœ„ì¹˜ ì›ì†Œ ë°˜í™˜í•¨ìˆ˜
+element peek(ArrayLIst *L,int pos)
+{
+	return L->array[pos];
 }
 
 

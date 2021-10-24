@@ -1,93 +1,97 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define MAX_QUEUE_SIZE 5
-
+//ë± êµ¬ì¡°ì²´ ìƒì„±
 typedef int element;
 
-typedef struct {
-	int front, rear;
+typedef struct{
+	int front,rear;
 	element data[MAX_QUEUE_SIZE];
 }DequeType;
-
+//ì—ëŸ¬ ì¶œë ¥ í•¨ìˆ˜
 void error(char *message)
 {
-	fprinf(stderr, "%s\n", message);
+	fprintf(stderr,"%s\n",message);
 	exit(1);
 }
-//µ¦ ÃÊ±âÈ­
+//ë± ì´ˆê¸°í™” í•¨ìˆ˜
 void init_deque(DequeType *q)
 {
-	q->front = q->rear = 0;
+	q->front=0;
+	q->rear=0;
 }
-//µ¦ empty
+//ë± ê³µë°±ì¶œë ¥ í•¨ìˆ˜
 int is_empty(DequeType *q)
 {
-	return (q->front == q->rear);
+	return q->front==q->rear;
 }
-//full
+//ë± í¬í™”ìƒíƒœ í•¨ìˆ˜
 int is_full(DequeType *q)
 {
-	return (q->rear + 1) % MAX_QUEUE_SIZE == q->front;
+	return (q->rear+1)%MAX_QUEUE_SIZE==q->front;
 }
-//µ¦ ¿ø¼Ò Ãâ·Â
+//ë±ì˜ ëª¨ë“ ì›ì†Œ ì¶œë ¥í•¨ìˆ˜
 void print_deque(DequeType *q)
 {
-	printf("Deque(front=&d rear=%d)", q->front, q->rear);
-	if (!is_empty(q))
+	printf("DEque(front=%d rear=%d) = ",q->front,q->rear);
+	if(!is_empty(q))
 	{
-		int i = q->front;
-		do {
-			i = (i + 1) % MAX_QUEUE_SIZE;
-			if (i == q->rear);
+		int i=q->front;
+		do
+		{
+			i=(i+1)%MAX_QUEUE_SIZE;
+			printf("%d | ",q->data[i]);
+			if(i==q->rear)
 			break;
-		} while (i != q->front);
-
+		} while (i!=q->front);
 	}
+	printf("\n");
 }
-//ÈÄ¸é¿¡ ¿ø¼Ò Ãß°¡
-void add_rear(DequeType *q, element item)
+//ë±ì˜ í›„ë©´ì— ì›ì†Œì‚½ìž… í•¨ìˆ˜
+void add_rear(DequeType *q,element item)
 {
-	if (is_full(q))
-		error("Å¥ Æ÷È­»óÅÂÀÔ´Ï´Ù.");
-	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
-	q->data[q->rear] = item;
+	if(is_full(q))
+	error("íê°€ í¬í™”ìƒíƒœìž…ë‹ˆë‹¤.");
+	q->rear=(q->rear+1)%MAX_QUEUE_SIZE;
+	q->data[q->rear]=item;
 }
-//Àü¸é ¿ø¼Ò »èÁ¦,Ãâ·Â
+//ë±ì˜ ì „ë©´ ì›ì†Œ ì‚­ì œí›„ ì¶œë ¥í•¨ìˆ˜
 element delete_front(DequeType *q)
 {
-	if (is_empty(q))
-		error("Å¥ Æ÷È­»óÅÂÀÔ´Ï´Ù.");
-	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+	if(is_empty(q))
+	error("íê°€ ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.");
+	q->front=(q->front+1)%MAX_QUEUE_SIZE;
 	return q->data[q->front];
 }
-//Àü¸é ¿ø¼Ò Ãâ·Â(»èÁ¦ x)
+//ë±ì˜ ì „ë©´ ì›ì†Œ ì‚­ì œí•˜ì§€ ì•Šê³  ì¶œë ¥í•¨ìˆ˜
 element get_front(DequeType *q)
 {
-	if (is_full(q))
-		error("Å¥ Æ÷È­»óÅÂÀÔ´Ï´Ù.");
-	return q->data[(q->front + 1) % MAX_QUEUE_SIZE];
+	if(is_empty(q))
+	error("íê°€ ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.");
+	return q->data[(q->front+1)%MAX_QUEUE_SIZE];
 }
-//Àü¸é ¿ø¼Ò Ãß°¡
-void add_front(DequeType *q, element item)
+//ë±ì˜ ì „ë©´ì— ì›ì†Œì‚½ìž… í•¨ìˆ˜
+void add_front(DequeType *q,element item)
 {
-	if (is_fulll(q))
-		error("½ºÅÃ Æ÷È­»óÅÂÀÔ´Ï´Ù.");
-	q->data[q->front] = item;
-	q->front = (q->front - 1+MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
+	if(is_full(q))
+	error("íê°€ í¬í™”ìƒíƒœìž…ë‹ˆë‹¤.");
+	q->data[q->front]=item;
+	q->front=(q->front-1+MAX_QUEUE_SIZE)%MAX_QUEUE_SIZE;
+	
 }
-//ÈÄ¸é ¿ø¼Ò »èÁ¦ ,Ãâ·Â
+//ë±ì˜ í›„ë©´ì— ì›ì†Œ ì‚­ì œí•˜ê³  ì¶œë ¥í•¨ìˆ˜
 element delete_rear(DequeType *q)
 {
-	if (is_empty(q))
-		error("½ºÅÃ °ø¹é»óÅÂÀÔ´Ï´Ù.");
-	element temp = q->data[q->rear];
-	q->rear = (q->rear - 1 + MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
-	return temp;
+	if(is_empty(q))
+	error("íê°€ ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.");
+	element item=q->data[q->rear];
+	q->rear=(q->rear-1+MAX_QUEUE_SIZE)%MAX_QUEUE_SIZE;
+	return item;
 }
-//ÈÄ¸é ¿ø¼Ò Ãâ·Â(»èÁ¦ x)
+//ë±ì˜ í›„ë©´ì— ì›ì†Œ ì‚­ì œí•˜ì§€ ì•Šê³  ì¶œë ¥í•¨ìˆ˜
 element get_rear(DequeType *q)
 {
-	if (is_empty(q))
-		error("½ºÅÃ °ø¹é»óÅÂÀÔ´Ï´Ù.");
+	if(is_empty(q))
+	error("íê°€ ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.");
 	return q->data[q->rear];
 }

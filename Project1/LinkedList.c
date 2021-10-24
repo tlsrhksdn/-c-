@@ -1,74 +1,41 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//¸®½ºÆ® Á¤ÀÇ 
+//ì—°ê²°ë¦¬ìŠ¤íŠ¸ ì¶œë ¥í•¨ìˆ˜
 typedef int element;
-
-typedef struct LinkedList {
+typedef LinkedList{
 	element data;
-	struct LinkedList *link;
+	struct Linkedlist *link;
 }LinkedList;
-//¿À·ù Ã³¸® ÇÔ¼ö
+//ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥í•¨ìˆ˜
 void error(char *message)
 {
-	fprintf(stderr, "%s\n", message);
+	fprintf(stderr,"%s\n",message);
 	exit(1);
 }
-//Ã¹ ¹ø¤Š ³ëµå·Î ¸®½ºÆ® »ðÀÔ
-LinkedList*insert_first(LinkedList *head, element value)
+//ì²« ë²ˆì§¸ ë¦¬ìŠ¤íŠ¸ì— ì›ì†Œ ì‚½ìž…í•¨ìˆ˜
+void insert_first(LinkedList *head,int value)
 {
-	LinkedList *p = (LinkedList*)malloc(sizeof(LinkedList));
-	p->data = value;
-	p->link = head;
-	head = p;
+	LinkedList *p=(LinkedList*)malloc(sizeof(LinkedList));
+	p->data=value;
+	p->link=head;
+	head=p;
 	return head;
 }
-//³ëµå µÚ¿¡ »õ·Î¿î ³ëµå »ðÀÔ
-LinkedList *insert(LinkedList *head, LinkedList*pre, element value)
+//íŠ¹ì • ìœ„ì¹˜ì— ì›ì†Œ ì‚½ìž…í•¨ìˆ˜
+void insert(LinkedList *head,LinkedList *pre,int value)
 {
-	LinkedList *p = (LinkedList*)malloc(sizeof(LinkedList));
-	p->data = value;
-	p->link = pre->link;
-	pre->link = p;
+	LinkedList *p=(LinkedList*)malloc(sizeof(LinkedList));
+	p->data=value;
+	p->link=pre->link;
+	pre->link=p;
 	return head;
 }
+//ì²« ë²ˆì§¸ ìœ„ì¹˜ì— ì›ì†Œ ì‚­ì œí•¨ìˆ˜
+element delete_first(LinkedList *head)
+{
 
-//Ã¹¹øÂ° ³ëµå Á¦°Å
-LinkedList *delete_first(LinkedList *head)
-{
-	LinkedList *removed;
-	if (head == NULL) return NULL;
-	removed = head; //??
-	head = removed->link;
-	free(removed);
-	return head;
 }
+//íŠ¹ì • ìœ„ì¹˜ì— ì›ì†Œ ì‚­ì œí•¨ìˆ˜
 
-//¸®½ºÆ®°¡ °¡¸®Å°´Â ´ÙÀ½ ¸®½ºÆ®ÀÇ ³ëµå Á¦°Å
-LinkedList *delete(LinkedList *head, LinkedList *pre)
-{
-	LinkedList *removed;
-	removed = pre->link;
-	pre->link = removed->link;
-	free(removed);
-	return head;
-}
-//¸®½ºÆ® Ãâ·Â
-void print_list(LinkedList *head)
-{
-	for (LinkedList *p = head; p != NULL; p = p->link)
-	{
-		printf("%d->", p->data);
-	}
-	printf("NULL \n");
-}
-int main()
-{
-	LinkedList *head = NULL;
-
-	for (int i = 0; i < 5; i++)
-	{
-		head = insert_first(head, i);
-		print_list(head);
-	}
-}
+//ë¦¬ìŠ¤íŠ¸ ì›ì†Œ ì¶œë ¥
