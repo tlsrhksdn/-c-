@@ -15,46 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stack.c">
+    <ClCompile Include="20203350_과제11.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="20203350_ex15.c">
+    <ClCompile Include="20203350_과제14.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="20203350_ex16.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="20203350_ex11.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="queue.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="circular_queue.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="circular_deck.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="문자열 압축 프로그램%28p.143 12번%29.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="20203350_ex12.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="ArrayList.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkedList.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stack.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="queue.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

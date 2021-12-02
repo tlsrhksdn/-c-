@@ -50,27 +50,27 @@ void deque_print(DequeType *q)
 void add_front(DequeType *q, element val)
 {
 	if (is_full(q))
-		error("½ºÅÃ Æ÷È­»óÅÂÀÔ´Ï´Ù.\n");
+		error("ë± í¬í™”ìƒíƒœìž…ë‹ˆë‹¤.\n");
 	q->data[q->front] = val;
 	q->front = (q->front - 1 + MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
 }
 element delete_front(DequeType *q)
 {
 	if (is_empty(q))
-		error("½ºÅÃ °ø¹é»óÅÂÀÔ´Ï´Ù.\n");
+		error("ë± ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.\n");
 	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
 	return q->data[q->front];
 }
 element get_front(DequeType *q)
 {
 	if (is_empty(q))
-		error("½ºÅÃ °ø¹é»óÅÂÀÔ´Ï´Ù.");
+		error("ë± ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.");
 	return q->data[(q->front + 1) % MAX_QUEUE_SIZE];
 }
 void add_rear(DequeType *q, element item)
 {
 	if (is_full(q))
-		error("½ºÅÃ Æ÷È­»óÅÂÀÔ´Ï´Ù.");
+		error("ë± í¬í™”ìƒíƒœìž…ë‹ˆë‹¤.");
 	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
 	q->data[q->rear]=item ;
 }
@@ -78,21 +78,21 @@ element delete_rear(DequeType *q)
 {
 	int prev = q->rear;
 	if (is_empty(q))
-		error("½ºÅÃ °ø¹é»óÅÂÀÔ´Ï´Ù.");
+		error("ë± ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.");
 	q->rear = (q->rear - 1+MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
 	return q->data[prev];
 }
 element get_rear(DequeType *q)
 {
 	if (is_empty(q))
-		error("½ºÅÃ °ø¹é»óÅÂÀÔ´Ï´Ù.");
+		error("ë± ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤.");
 	return q->data[q->rear];
 }
 
 element create_customer(int clock)
 {
 	element customer;
-	customer.id = total_customers++;
+	customer.id ;
 	customer.arrival_time = clock;
 	customer.service_time = rand() % 5 + 1;
 	return customer;
@@ -101,7 +101,7 @@ element create_customer(int clock)
 int amount_queue(DequeType q)
 {
 	int count;
-	count = q->rear - q-> front;
+	count = q -> rear - q -> front;
 	if (count < 0) count += MAX_QUEUE_SIZE;
 	return count;
 }
@@ -134,7 +134,7 @@ int main()
 
 	for (int clock = 0; clock < minutes; clock++)
 	{
-		printf("ÇöÀç½Ã°¢=%d\n", clock);
+		printf("ï¿½ï¿½ï¿½ï¿½Ã°ï¿½=%d\n", clock);
 		if (rand() % 10 < 4) {
 			element customer;
 			customer = create_customer(clock);
@@ -144,13 +144,13 @@ int main()
 			}
 			int low_count_queue = sorting(count_table);
 			add_rear(&q[low_count_queue],customer);
-			printf("%d¹ø µ¦¿¡ °í°´ %d¹øÀÌ %dºÐ¿¡ µé¾î¿É´Ï´Ù. ¾÷¹«Ã³¸®½Ã°£=%dºÐ\n",low_count_queue,customer.id,customer.arrival_time,customer.service_time);
+			printf("%dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ %dï¿½ï¿½ï¿½ï¿½ %dï¿½Ð¿ï¿½ ï¿½ï¿½ï¿½É´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½Ã°ï¿½=%dï¿½ï¿½\n",low_count_queue,customer.id,customer.arrival_time,customer.service_time);
 		}
 		for (int i = 0; i < 3; i++)
 		{
 			if (service_time[i] > 0)
 			{
-				printf("%d¹ø µ¦ÀÇ °í°´ %d¹øÀÇ ¾÷¹«Ã³¸®ÁßÀÔ´Ï´Ù. \n", i, service_customer[i]);
+				printf("%dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ %dï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. \n", i, service_customer[i]);
 				service_time[i]--;
 			}
 			else
@@ -161,7 +161,7 @@ int main()
 					element customer = delete_front(&q[i]);
 					service_customer[i] = customer.id;
 					service_time[i] = customer.service_time;
-					printf("%d¹ø µ¦ÀÇ °í°´ %d¹øÀÌ %dºÐ¿¡ ¾÷¹«¸¦ ½ÃÀÛÇÕ´Ï´Ù. ´ë±â»ç°£Àº %dºÐÀÌ¾ú½À´Ï´Ù.\n",i,customer.id,clock,clock-customer.arrival_time);
+					printf("%dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ %dï¿½ï¿½ï¿½ï¿½ %dï¿½Ð¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. ï¿½ï¿½ï¿½ç°£ï¿½ï¿½ %dï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\n",i,customer.id,clock,clock-customer.arrival_time);
 				}
 				else
 				{
@@ -172,8 +172,8 @@ int main()
 					{
 						bigger = (q1 >= q2) ? (i + 1) % 3 : (i + 2) % 3;
 						add_rear(&q[i], delete_rear(&q[bigger]));
-						printf("%d¹ø µ¦¿¡¼­ %d¹ø µ¦ÀÇ °í°´À» °¡Áö°í ¿Ô½À´Ï´Ù.\n", i, bigger);
-						printf("%d¹ø", bigger);
+						printf("%dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½Ï´ï¿½.\n", i, bigger);
+						printf("%dï¿½ï¿½", bigger);
 						deque_print(&q[bigger]);
 
 

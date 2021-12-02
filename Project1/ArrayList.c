@@ -69,7 +69,7 @@ element delete(ArrayLIst*L,int pos)
 	element item=L->array[pos];
 	if(pos<0 || pos>L->size)
 	error("공백 오류");
-	for(int i=pos;i<=(L->size-1)>;i++)
+	for(int i=pos;i<=(L->size-1);i++)
 	{
 		L->array[i]=L->array[i+1];
 	}

@@ -1284,3 +1284,126 @@ peek(s):
 //	printf("전체 대기 시간=%d분 \n", total_wait);
 //}
 //
+/*
+#include<stdio.h>
+#include<stdlib.h>
+
+#define MAX_QUEUE_SIZE 100
+
+typedef int element;
+
+typedef struct {
+	int front,rear;
+	element data[MAX_QUEUE_SIZE];
+}DequeType;
+
+void init_deque(DequeType *q)
+{
+	q->front = q->rear = 0;
+}
+int is_empty(DequeType *q)
+{
+	return (q->front == q->rear);
+}
+int is_full(DequeType *q)
+{
+	return (q->front + 1) % MAX_QUEUE_SIZE == q->rear;
+}
+void add_front(DequeType *q, element item)
+{
+	q->data[q->front] = item;
+	q->front = (q->front - 1 + MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
+}
+element delete_front(DequeType *q)
+{
+	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+	return q->data[q->front];
+}
+element get_front(DequeType *q)
+{
+	return q->data[(q->front + 1) % MAX_QUEUE_SIZE];
+}
+void add_rear(DequeType *q, element item)
+{
+	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
+	q->data[q->rear]=item;
+}
+element delete_rear(DequeType *q)
+{
+	element temp=q->data[q->rear];
+	q->rear = (q->rear - 1 + MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
+	return temp;
+}
+element get_rear(DequeType *q)
+{
+	return q->data[q->rear];
+}
+void print_deque(DequeType *q)
+{
+	if (!is_empty(q))
+	{
+		int i = q->front;
+		printf("%d | ", q->data[i]);
+		do {
+			i = (i + 1) % MAX_QUEUE_SIZE;
+			printf("%d | ", q->data[i]);
+			if (i == q->rear)
+				break;
+		}while(i!=q->front)
+	}
+	printf("\n");
+}
+*/
+
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//typedef int element;
+//
+//typedef struct {
+//	element data;
+//	struct LinkedList *link;
+//}LinkedList;
+//
+//LinkedList* insert_first(LinkedList *head, element item)
+//{
+//	LinkedList*p = (LinkedList*)malloc(sizeof(LinkedList));
+//	p->data = item;
+//	p->link = head;
+//	head = p;
+//	return head;
+//}
+//LinkedList* insert(LinkedList *head, LinkedList* pre, element item)
+//{
+//	LinkedList *p = (LinkedList*)malloc(sizeof(LinkedList));
+//	p->data = item;
+//	p->link = pre->link;
+//	pre->link = p;
+//	return head;
+//}
+//LinkedList* delete_front(LinkedList *head)
+//{
+//	LinkedList* removed;
+//	if (head == NULL) return NULL;
+//	removed = head;
+//	head = removed->link;
+//	free(removed);
+//	return head;
+//}
+//LinkedList* delete(LinkedList *head, LinkedList *pre)
+//{
+//	LinkedList *removed;
+//	removed = pre->link;
+//	pre->link = removed->link;
+//	free(removed);
+//	return head;
+//}
+//void print_list(LinkedList *head)
+//{
+//	for (LinkedList* p = head; p != NULL; p = p->link)
+//	{
+//		printf("%d->", p->data);
+//	}
+//	printf("NULL \n");
+//}
+

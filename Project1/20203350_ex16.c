@@ -27,7 +27,7 @@ void push(StackType *s, element item)
 {
 	if (is_full(s))
 	{
-		fprintf(stderr, "½ºÅÃ Æ÷È­ ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ í¬í™”ìƒíƒœì…ë‹ˆë‹¤.\n");
 		return;
 	}
 	else
@@ -38,7 +38,7 @@ element pop(StackType *s)
 {
 	if (is_empty(s))
 	{
-		fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ ê³µë°±ìƒíƒœì…ë‹ˆë‹¤.\n");
 		exit(1);
 	}
 	else
@@ -48,13 +48,13 @@ element peek(StackType *s)
 {
 	if (is_empty(s))
 	{
-		fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ ê³µë°±ìƒíƒœì…ë‹ˆë‹¤.\n");
 		exit(1);
 	}
 	else
 		return s->data[(s->top)];
 }
-//½ºÅÃ ÇÔ¼ö ³¡!
+
 
 void main()
 {
@@ -62,7 +62,7 @@ void main()
 	StackType *s;
 
 	init_stack(&s);
-	printf("¹®ÀÚ¿­À» ÀÔ·ÂÇÏ½Ã¿À: ");
+	printf("ë¬¸ìì—´ì„ ì…ë ¥í•˜ì‹œì˜¤ : ");
 	gets_s(line, sizeof(line));
 
 	for (int i = 0; i < strlen(line) / 2; i++)
@@ -71,24 +71,25 @@ void main()
 	{
 		if (pop(&s) != line[i])
 		{
-			printf("È¸¹®ÀÌ ¾Æ´Õ´Ï´Ù.\n");
+			printf("íšŒë¬¸ì´ ì•„ë‹™ë‹ˆë‹¤.\n");
 			return;
 		}
 	}	
 
 	if (check_palindrome(&s, line) == 1)
 	{
-		printf("È¸¹®ÀÔ´Ï´Ù.\n");
+		printf("íšŒë¬¸ì…ë‹ˆë‹¤.\n");
 		return;
 	}
 	else
-		printf("È¸¹®ÀÌ ¾Æ´Õ´Ï´Ù.\n");
+		printf("íšŒë¬¸ì´ ì•„ë‹™ë‹ˆë‹¤.\n");
 	return;
 }
+
 int check_palindrome(StackType *s, element exp[])
 {
 	int i = 0, len = strlen(exp);
-	printf("½ºÅÃ¿¡ µé¾î°£ ¹®ÀÚ´Â : ");
+	printf("ë¬¸ìì—´ì„ ì…ë ¥í•˜ì‹œì˜¤ : ");
 	for (int i = 0; i < len; i++)
 	{
 		if (exp[i] >= 'A'&&exp[i] <= 'Z')
